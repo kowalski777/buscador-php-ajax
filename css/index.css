@@ -26,6 +26,7 @@ video#vidFondo {
   background-color: rgba(255, 255, 255);
   height: 19rem;
   padding:0 !important;
+  
 }
 .info-uno img{
   width: 100%;
@@ -41,10 +42,12 @@ video#vidFondo {
 .info-dos b{
   font-size: 12pt;
   font-family: "Segoe UI", cursive sans-serif;
+  
 }
 
 .info-dos .blck-txt{
-  margin-top: 25px;
+  margin-top: 5px;
+  
 }
 
 

@@ -1,11 +1,15 @@
 
 $(function(){
+  selCiudad();
+  selTipo();
   var Casas = {
     formulario: $('#formulario'),
     $btnTodos: $('#mostrarTodos'),
     colContenido: $('.colContenido'),
 
     Init: function(){
+      
+
       var self = this
       self.cargarSelect()
       self.cargarTodos()
@@ -50,13 +54,14 @@ $(function(){
       var newNumero = Number(numero.replace('$', '').replace(',', '').replace(' ', ''))
       return newNumero
     },
-    renderBienes: function(casas){
+    renderBienes: function(bienes){
       var self = this
-      var casa = casas
+      var bien = bienes
       self.colContenido.html('')
 
-      casa.map((casa)=>{
-        var bienTemplate = '<div class="itemMostrado card horizontal">'+
+      bien.map((bien)=>{
+        var bienTemplate =
+                            '<div class="itemMostrado card horizontal">'+
                                 '<img src="img/home.jpg">'+
                               '<div class="card-stacked">'+
                                 '<div class="card-content">'+
@@ -85,19 +90,18 @@ $(function(){
                               '</div>'+
                             '</div>';
 
-        var newCasa = bienTemplate.replace(':direccion:', casa.Direccion)
-                                  .replace(':ciudad:', casa.Ciudad)
-                                  .replace(':telefono:', casa.Telefono)
-                                  .replace(':codigo_postal:', casa.Codigo_Postal)
-                                  .replace(':precio:', casa.Precio)
-                                  .replace(':tipo:', casa.Tipo)
-        self.colContenido.append(newCasa)
+        var newBien = bienTemplate.replace(':direccion:', bien.Direccion)
+                                  .replace(':ciudad:', bien.Ciudad)
+                                  .replace(':telefono:', bien.Telefono)
+                                  .replace(':codigo_postal:', bien.Codigo_Postal)
+                                  .replace(':precio:', bien.Precio)
+                                  .replace(':tipo:', bien.Tipo)
+        self.colContenido.append(newBien)
       })
     }
   }
   Casas.Init()
 })
-
 
 
 
@@ -152,75 +156,7 @@ function playVideoOnScroll() {
     }, 10)
 }
 
-
-
-inicializarSlider();
-playVideoOnScroll();
-
-
-/*
-
-//selectCiudad();
-//selecTipo();
-
-$(document).ready(function(){
-
-  $("#mostrarTodos").click(function(){
-
-  $.ajax({
-    url: "data-1.json",
-    type: 'GET',
-    dataType: "json",})
-
-    .then(function(datos) {
-    for (i in datos) {
-    var obj = datos[i];
-    $('.colContenido').append('<div class="row">\
-                                      <div class="info-uno col l4 left"><img src="img/home.jpg"></div>\
-                                      <div class="info-dos col l8 right">\
-                                        <div class="blck-txt">\
-                                          <div class="col l12"><b>Direccion:</b>   '+obj.Direccion+'</div> \
-                                          <div class="col l12"><b>Ciudad:</b>   '+obj.Ciudad+'</div>\
-                                          <div class="col l12"><b>Telefono:</b>   '+obj.Telefono+'</div>\
-                                          <div class="col l12"><b>Codigo Postal:</b>   '+obj.Codigo_Postal+'</div>\
-                                          <div class="col l12"><b>Tipo:</b>   '+obj.Tipo+'</div>\
-                                          <div class="col l12"><b>Precio:</b>   '+obj.Precio+'</div>\
-                                        </div>\
-                                      </div>\
-                                 </div>');
-      }
-    });
-  });
-});
-
-$("#submitButton").click(function(){
-
-  var ciudad = $("#selectCiudad").val();
-  var tipo = $("#selectTipo").val();
-  var precio = $("#rangoPrecio").val();
-  $.post("buscador.php", { ciudad: ciudad, tipo: tipo, precio: precio })
-  alert(ciudad +"  "+ tipo+"  "+precio)
-
-    $.ajax({
-    url: "data-1.json",
-    type: 'GET',
-    dataType: "json", })
-
-    .then(function(dat) {
-      var resp = (dat)
-       for (j in dat) {
-        
-       if (dat.Ciudad == ciudad){
-            alert(dat.Ciudad)
-      }
-     }
-    });
-  });
-
-
-
-
-function selectCiudad() {
+function selCiudad() {
   $.ajax({
     url: "./lista.php",
     type: 'GET',
@@ -237,7 +173,7 @@ function selectCiudad() {
   });
 }
 
-function selecTipo() {
+function selTipo() {
   $.ajax({
     url: "./tipo.php",
     type: 'GET',
@@ -253,4 +189,10 @@ function selecTipo() {
     }
   });
 }
-*/
+
+inicializarSlider();
+playVideoOnScroll();
+
+
+
+
